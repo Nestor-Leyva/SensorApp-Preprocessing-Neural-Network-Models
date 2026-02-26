@@ -22,20 +22,22 @@ The project evaluates four main architectures: **MLP, CNN, LSTM, and Transformer
 ### File Description
 The following scripts represent the complete pipeline for data processing and model training:
 
-1. **`1 - basic preprocessing.py`**:
+1. **`dataset_anonymized.json`**: The core dataset containing anonymized records of 126 participants. It includes sensor measurements (accelerometer and gyroscope), daily survey responses, and validated OCEAN scores from the IPIP-50 test.
+
+2. **`1 - basic preprocessing.py`**:
     * Loads raw data from JSON format.
     * Calculates basic descriptive statistics: mean and standard deviation for both sensors.
     * Normalizes OCEAN trait values to a 0-1 range.
     * Implements feature scaling using `StandardScaler`.
 
-2. **`2 - Deep Learning Models.py`**:
+3. **`2 - Deep Learning Models.py`**:
     * Initial implementation of MLP, CNN, LSTM, and Transformer architectures using only basic sensor metrics.
 
-3. **`3 - Advanced preprocessing (statistical features).py`**:
+4. **`3 - Advanced preprocessing (statistical features).py`**:
     * **Time Domain**: Implements Variance, Interquartile Range (IQR), Root Mean Square (RMS), and Entropy.
     * **Frequency Domain**: Implements Discrete Fast Fourier Transform (DFFT), Discrete Cosine Transform (DCT), Energy, and Power Frequency Range (PFR).
 
-4. **`4 - Deep Learning Models (new features).py`**:
+5. **`4 - Deep Learning Models (new features).py`**:
     * Final training environment using the augmented feature set (Time + Frequency domains).
     * Includes **K-Fold Cross-Validation** to ensure robust performance estimation.
 
@@ -46,6 +48,9 @@ The following scripts represent the complete pipeline for data processing and mo
 - **TensorFlow/Keras**: For deep learning model architecture.  
 - **Scikit-learn**: For data scaling (`StandardScaler`) and dataset splitting.  
 - **Scipy**: Specifically `scipy.fftpack` for Discrete Cosine Transform (DCT) calculations.  
+
+#### Installation
+Clone the repository and install the dependencies listed in `requirements.txt`:
 
 ---
 
@@ -62,7 +67,7 @@ The experiments were executed in **Google Colaboratory**. For optimal performanc
 
 Follow this order to replicate the study's findings:
 
-- **Preparation**: Run `1 - basic preprocessing.py` to generate the base DataFrame.  
+- **Preparation**: Place `dataset_anonymized.json` in your working directory and run `1 - basic preprocessing.py`.  
 
 - **Initial Benchmark**: Run `2 - Deep Learning Models.py` to evaluate performance using basic features only.  
 
